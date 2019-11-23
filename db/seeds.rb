@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Story.destroy_all
+Comment.destroy_all
+
+7.times do
+  Story.create(name: Faker::Name.unique.name,text: Faker::Quote.yoda )
+end
+
+puts "I have created #{Story.count}"
+
+@stories.all do |story|
+  Comment.create(name: Faker::Name.unique.name, content: Faker::Quote.most_interesting_man_in_the_world,story_id: story.id)
+end
+
+puts "I have created #{Comment.count}"
