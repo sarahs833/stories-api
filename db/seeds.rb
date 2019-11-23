@@ -9,12 +9,12 @@ Story.destroy_all
 Comment.destroy_all
 
 7.times do
-  Story.create(name: Faker::Name.unique.name,text: Faker::Quote.yoda )
+  Story.create(name: Faker::Name.unique.name, text: Faker::Quote.yoda)
 end
 
 puts "I have created #{Story.count}"
 
-@stories.all do |story|
+Story.all.each do |story|
   Comment.create(name: Faker::Name.unique.name, content: Faker::Quote.most_interesting_man_in_the_world,story_id: story.id)
 end
 
